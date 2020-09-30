@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--
+        按照单一职责的划分 当前的配置文件主要是用于初始化对象的,以及处理数据库事务的,所以只要初始化service层就好了
+    -->
+    <context:component-scan base-package="com.sdzy.www.service"></context:component-scan>
+
+
+    <!--导入自己的数据库连接配置文件-->
+    <context:property-placeholder location="classpath:conf/jdbc.properties"/>
+
+
+    <!--Druid连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+    </bean>
+
+    <!--配置会话工厂 用来造数据库访问的sqlSession sqlSessionFactory-->
+
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源对象-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--别名 把用于封装模型的对象所在的包拿过来 这样在定义封装类型的时候就直接写类名,就可以直接找到了-->
+        <property name="typeAliasesPackage" value=".pojo"/>
+        <!--用来找mybatis.xml文件的,为了加载分页插件-->
+        <property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
+        <!--导入mapper.xml,就是导入sql映射-->
+        <property name="mapperLocations" value="classpath:com/sdzy/www/mapper/*.xml"/>
+    </bean>
+
+    <!--扫描mapper接口的位置,也就是dao接口-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.sdzy.www.mapper"/>
+    </bean>
+
+    <!--msg -ajax-->
+    <bean id="msg" class="com.sdzy.www.bean.Msg" scope="prototype">
+        <property name="code" value="1"/>
+        <property name="msg" value="成功"/>
+    </bean>
+
+
+</beans>
