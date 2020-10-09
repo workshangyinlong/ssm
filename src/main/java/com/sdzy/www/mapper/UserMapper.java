@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Param;
 */
 public interface UserMapper {
     User selectByTel(String tel);
-    String select(@Param("invitation") String invitation,@Param("tel") String tel,@Param("email") String email);
+    String select(@Param("invitation") String invitation, @Param("tel") String tel, @Param("email") String email);
     void insert(User user);
 }

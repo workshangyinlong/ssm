@@ -27,7 +27,8 @@
     <!--
         按照单一职责的划分 当前的配置文件主要是用于初始化对象的,以及处理数据库事务的,所以只要初始化service层就好了
     -->
-    <context:component-scan base-package="com.sdzy.www.service"></context:component-scan>
+    <context:component-scan base-package="com.yl.www" >
+    </context:component-scan>
 
 
     <!--导入自己的数据库连接配置文件-->
@@ -54,23 +55,36 @@
         <!--数据源对象-->
         <property name="dataSource" ref="dataSource"/>
         <!--别名 把用于封装模型的对象所在的包拿过来 这样在定义封装类型的时候就直接写类名,就可以直接找到了-->
-        <property name="typeAliasesPackage" value=".pojo"/>
+        <property name="typeAliasesPackage" value="com.yl.www.pojo"/>
         <!--用来找mybatis.xml文件的,为了加载分页插件-->
         <property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
         <!--导入mapper.xml,就是导入sql映射-->
-        <property name="mapperLocations" value="classpath:com/sdzy/www/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!--扫描mapper接口的位置,也就是dao接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.sdzy.www.mapper"/>
+        <property name="basePackage" value="com.yl.www.dao"/>
     </bean>
 
-    <!--msg -ajax-->
-    <bean id="msg" class="com.sdzy.www.bean.Msg" scope="prototype">
-        <property name="code" value="1"/>
-        <property name="msg" value="成功"/>
+    <!--创建事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <!--启用事务注解-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--msgBean-->
+    <bean id="msg" class="com.yl.www.bean.Msg" scope="prototype">
+        <property name="code" value="1"/>
+    </bean>
+
+    <bean id="user" class="com.yl.www.pojo.User">
+
+    </bean>
+
 
 
 </beans>

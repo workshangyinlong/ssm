@@ -3,7 +3,8 @@ package com.sdzy.www.pojo;
 /*
     用户实体
  */
-
+/*
+* user*/
 public class User {
     private Integer id;
     private String tel;
@@ -57,7 +58,7 @@ public class User {
                 "id=" + id +
                 ", tel='" + tel + '\'' +
                 ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
+                ", emali='" + email + '\'' +
                 ", invitation='" + invitation + '\'' +
                 '}';
     }

@@ -7,9 +7,9 @@ import com.sdzy.www.service.UserService;
 import com.sdzy.www.utils.ApBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /*
@@ -20,18 +20,19 @@ import java.util.Map;
 @Controller
 @RequestMapping("/public")
 public class UserController {
-    @RequestMapping("/login")
-    public String loginPage(){
-        return "login";
-    }
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/regist")
-    //注册,判断手
-    public Msg registPage(@RequestParam Map<String,String> map) {
+    @RequestMapping("/register")
+    public String register(){
+        return "pagehome/register";
+    }
 
+    //注册,判断手
+    @RequestMapping(value = "/regist",method = RequestMethod.POST)
+    @ResponseBody
+    public Msg registPage(@RequestParam Map<String,String> map, HttpSession session) {
         String tel = map.get("tel");
         String password = map.get("password");
         String email = map.get("email");
@@ -59,14 +60,21 @@ public class UserController {
             User user = ApBean.getBean(User.class);
             user.setTel(tel);
             user.setPassword(password);
-            user.setEmali(email);
+            user.setEmail(email);
             user.setInvitation(invitation);
             userService.regist(user);
-
+            user.setPassword("");
+            session.setAttribute("user",user);
+            msg.setMsg("注册成功");
+            return  msg;
         }
         //msg.setCode(1);
-        msg.setMsg("注册成功");
-        return  msg;
 
+
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "pagehome/index";
     }
 }

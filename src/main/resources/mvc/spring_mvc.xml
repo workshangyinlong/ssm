@@ -27,10 +27,11 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
+
     <!--user-default-filters默认为true 凡是被@Controller @Service @Repository修饰的类都会被扫描
         改为false则会扫描include-filte指定的注解
      -->
-    <context:component-scan base-package="com.sdzy.www" use-default-filters="false">
+    <context:component-scan base-package="com.yl.www" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 

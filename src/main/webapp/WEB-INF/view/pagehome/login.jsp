@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>登录-车速递租车</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/pagehome.login.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/pagehome.login.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
@@ -24,14 +25,14 @@
         <h2 data-v-95c8bc32="" class="left" style="display: none;">欢迎注册</h2>
         <h2 data-v-95c8bc32="" class="left" style="display: none;">找回密码</h2>
         <h2 data-v-95c8bc32="" class="left" style="display: none;">重置密码</h2>
-        <a data-v-95c8bc32="" href="${pageContext.request.contextPath}/" class="right">回到首页&gt;</a>
+        <a data-v-95c8bc32="" href="${pageContext.request.contextPath}/public/index" class="right">回到首页&gt;</a>
     </div>
     </div>
     <div data-v-0a99943a="" class="login">
         <div data-v-0a99943a="" class="layout">
             <div data-v-0a99943a="" class="loginCom clear">
                 <div data-v-0a99943a="" class="loginImg left">
-                    <img data-v-0a99943a="" src="../images/login.a7fdfe2.jpg">
+                    <img data-v-0a99943a="" src="${pageContext.request.contextPath}/static/images/login.a7fdfe2.jpg">
                 </div>
                 <div data-v-0a99943a="" class="loginType right">
                     <div class="denglu">
@@ -57,7 +58,7 @@
                                     <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
                             </div>
                             <div data-v-0a99943a="" class="goRegister">
-                                还没有账号？<a data-v-0a99943a="" href="register.html">免费注册</a></div>
+                                还没有账号？<a data-v-0a99943a="" href="${pageContext.request.contextPath}/public/register">免费注册</a></div>
                         </form>
                     </div>
                 </div>
@@ -131,14 +132,14 @@
         //监听提交
         form.on('submit(formDemo)', function(dt){
             $.ajax({
-                url:"/",
+                url:"${pageContext.request.contextPath}/load/relLogin",
                 type:"post",
                 data:$("form").serialize(),
                 dataType:'json',
                 success:function(data) {
                     console.log(data.code);
                     if(data.code == 1) {
-                        window.location.href="${pageContext.reqeust.contextPath}/";
+                        window.location.href="${pageContext.request.contextPath}/load/loginsuccess";
                     }else {
                         layer.alert(data.msg);
                     }
@@ -148,7 +149,6 @@
                 }
             });
             return false;
-
         });
     });
 </script>

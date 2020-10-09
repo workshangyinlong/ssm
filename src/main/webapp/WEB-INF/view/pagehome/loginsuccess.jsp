@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>车速递租车首页</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/pagehome.index.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/pagehome.index.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 
@@ -20,8 +21,8 @@
             <div data-v-67ef3a4a class="left csdnav">
                 <label data-v-67ef3a4a>
                     <a data-v-67ef3a4a href="#">你好，</a>
-                    <a data-v-67ef3a4a href="javascript:void" class="colorRed">/</a>
-                    <a data-v-67ef3a4a href="index.jsp" class="colorRed" style="margin-right: 10px;">[退出]</a>
+                    <a data-v-67ef3a4a href="javascript:void(0)" class="colorRed">${user.tel}/</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/logout" class="colorRed" style="margin-right: 10px;">[退出]</a>
                 </label>
 
 

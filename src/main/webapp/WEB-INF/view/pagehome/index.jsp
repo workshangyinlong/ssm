@@ -18,9 +18,9 @@
         <div data-v-67ef3a4a class="layout clear">
             <div data-v-67ef3a4a class="left csdnav">
                 <label data-v-67ef3a4a>
-                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/" class="colorRed">登录</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/login" class="colorRed">登录</a>
                     <a data-v-67ef3a4a href="javascript:void(0)" class="colorRed">/</a>
-                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/" class="colorRed" style="margin-right: 10px;">注册</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/public/register" class="colorRed" style="margin-right: 10px;">注册</a>
                 </label>
 
 

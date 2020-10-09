@@ -1,17 +1,19 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>注册-车速递租车</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/pagehome.register.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/pagehome.register.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 </head>
@@ -28,7 +30,7 @@
             <h2 data-v-95c8bc32="" class="left">欢迎注册</h2>
             <h2 data-v-95c8bc32="" class="left" style="display: none;">找回密码</h2>
             <h2 data-v-95c8bc32="" class="left" style="display: none;">重置密码</h2>
-            <a data-v-95c8bc32="" href="index.jsp" class="right">回到首页&gt;</a>
+            <a data-v-95c8bc32="" href="${pageContext.request.contextPath}/public/index" class="right">回到首页&gt;</a>
         </div>
     </div>
 
@@ -90,8 +92,8 @@
 
                 <div data-v-676ecf83="" class="registerImg right">
                     <h2 data-v-676ecf83="">已有车速递账号？
-                        <a data-v-676ecf83="" href="login.jsp">立即登录&nbsp;&gt;&gt;</a>
-                    </h2> <img data-v-676ecf83="" src="../images/login.a7fdfe2.jpg">
+                        <a data-v-676ecf83="" href="${pageContext.request.contextPath}/load/login">立即登录&nbsp;&gt;&gt;</a>
+                    </h2> <img data-v-676ecf83="" src="${pageContext.request.contextPath}/static/images/login.a7fdfe2.jpg">
                 </div>
             </div>
 
@@ -130,16 +132,16 @@
         //监听提交
         form.on('submit(demo1)', function(data){
             $.ajax({
-                url:"/carsys/user/register.do",
+                url:"${pageContext.request.contextPath}/public/regist",
                 type:"post",
                 data:$("form").serialize(),
                 dataType:'json',
                 success:function(res) {
                     if(res.code == 1) {
                         alert("注册成功！");
-                        window.location.href=("login.html");
+                        window.location.href="${pageContext.request.contextPath}/load/loginsuccess";
                     } else {
-                        layer.alert(res.info);
+                        layer.alert(res.msg);
                     }
                 },
                 error: function() {
