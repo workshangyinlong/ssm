@@ -2,6 +2,7 @@ package com.sdzy.www.bean;
 
 
 /*
+msg类
 用于ajax回复json数据
 */
 public class Msg {
