@@ -8,7 +8,7 @@ public class User {
     private Integer id;
     private String tel;
     private String password;
-    private  String emali;
+    private  String email;
     private String invitation;
 
     public Integer getId() {
@@ -35,12 +35,12 @@ public class User {
         this.password = password;
     }
 
-    public String getEmali() {
-        return emali;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmali(String emali) {
-        this.emali = emali;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getInvitation() {
@@ -57,7 +57,7 @@ public class User {
                 "id=" + id +
                 ", tel='" + tel + '\'' +
                 ", password='" + password + '\'' +
-                ", emali='" + emali + '\'' +
+                ", email='" + email + '\'' +
                 ", invitation='" + invitation + '\'' +
                 '}';
     }
