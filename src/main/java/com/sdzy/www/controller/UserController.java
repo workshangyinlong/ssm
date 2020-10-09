@@ -58,8 +58,8 @@ public class UserController {
         } else {
             User user = ApBean.getBean(User.class);
             user.setTel(tel);
-            user.setPassWord(password);
-            user.setEmail(email);
+            user.setPassword(password);
+            user.setEmali(email);
             user.setInvitation(invitation);
             userService.regist(user);
 
