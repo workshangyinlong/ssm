@@ -6,7 +6,9 @@ import com.sdzy.www.pojo.User;
     用户相关逻辑处理
  */
 public interface UserService {
-    User getTel(String tel);
-    void  insert(User user);
-
+    User login(String tel);
+    void  regist(User user);
+    String getEmail(String email);
+    String getInvitation(String invitation);
+    String getTel(String tel);
 }
