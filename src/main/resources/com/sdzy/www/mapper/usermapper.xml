@@ -4,7 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--userMapper映射-->
 <mapper namespace="com.sdzy.www.mapper.UserMapper">
-    <select id="" resultType="User">
+    <select id="selectByTel" resultType="User">
+    select * from sys_user where tel=#{tel};
+    </select>
 
+    <insert id="insert" parameterType="User" >
+        insert into sys_user values(null,#{tel},#{password},#{email},#{invitation});
+    </insert>
+
+    <select id="select" resultType="String">
+        <if test="invitation!=null">
+            select invitation from sys_user where invitation=#{invitation};
+        </if>
+        <if test="tel!=null">
+            select tel from sys_user where tel=#{tel};
+        </if>
+        <if test="email!=null">
+            select email from sys_user where email=#{email};
+        </if>
     </select>
 </mapper>
