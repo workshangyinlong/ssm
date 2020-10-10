@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>短驾自租</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/shortrent.shortrent.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/shortrent.shortrent.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
@@ -18,15 +19,15 @@
         <div data-v-67ef3a4a class="layout clear">
             <div data-v-67ef3a4a class="left csdnav" id="daohang">
                 <label data-v-67ef3a4a v-if="weidenglu">
-                    <a data-v-67ef3a4a href="../pagehome/login.jsp" class="colorRed" >登录</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/login" class="colorRed" >登录</a>
                     <a data-v-67ef3a4a href="" class="colorRed">/</a>
-                    <a data-v-67ef3a4a href="../pagehome/register.jsp" class="colorRed" style="margin-right: 10px;">注册</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/public/register" class="colorRed" style="margin-right: 10px;">注册</a>
                 </label>
 
                 <label data-v-67ef3a4a v-if="denglu">
                     <a data-v-67ef3a4a href="#">你好，</a>
-                    <a data-v-67ef3a4a href="#" class="colorRed">/</a>
-                    <a data-v-67ef3a4a href="../pagehome/index.jsp" class="colorRed" style="margin-right: 10px;">[退出]</a>
+                    <a data-v-67ef3a4a href="#" class="colorRed">${user.tel}/</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/logout" class="colorRed" style="margin-right: 10px;">[退出]</a>
                 </label>
 
 
@@ -75,7 +76,7 @@
                         <a data-v-39f7f629="" href="https://www.chesudi.com/module/longRent.html" target="_blank" class="">企业长租</a>
                     </li>
                     <li data-v-39f7f629="">
-                        <a data-v-39f7f629="" href="shortrent.html" target="_self" class="colorRed">短租自驾</a>
+                        <a data-v-39f7f629="" href="shortrent.jsp" target="_self" class="colorRed">短租自驾</a>
                     </li>
                     <li data-v-39f7f629="">
                         <a data-v-39f7f629="" href="index.html" target="_self" >
@@ -158,14 +159,14 @@
     function loadfirst(pid){
         $.ajax({
             type:"post",
-            url:"/carsys/city/select.do?pid="+pid,
+            url:"${pageContext.request.contextPath}/city/position?pid="+pid,
             dataType:"json",
             success:function(data){
                 //id为0时为父类
                 if(pid==0){
-                    vm.mcs=data.info;
+                    vm.mcs=data;
                 }else{
-                    vm2.citys = data.info;
+                    vm2.citys = data;
                 }
             }
         });
@@ -206,14 +207,14 @@
     function load(pid){
         $.ajax({
             type:"post",
-            url:"/carsys/city/select.do?pid="+pid,
+            url:"${pageContext.request.contextPath}/city/position?pid="+pid,
             dataType:"json",
             success:function(data){
                 //id为0时为父类
                 if(pid==0){
-                    vm3.mcs=data.info;
+                    vm3.mcs=data;
                 }else{
-                    vm4.citys=data.info;
+                    vm4.citys=data;
                 }
             }
         });
