@@ -231,7 +231,7 @@
     function selectCar() {
         var getid = $("#bmsel").val();
         var backid = $("#hcs").val();
-        window.location.href="shortsort.html?getid="+getid+"&backid="+backid;
+        window.location.href="${pageContext.request.contextPath}/sort/shortsort?getid="+getid+"&backid="+backid;
 
         }
 
