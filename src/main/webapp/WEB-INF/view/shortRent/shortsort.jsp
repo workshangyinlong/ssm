@@ -1,25 +1,34 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>短租排序</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/shortrent.shortrent.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/shortrent.shortrent.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
-<body id="app">
-<div data-v-67ef3a4a class="csdheader">
-    <div data-v-67ef3a4a class="layout clear">
-        <div data-v-67ef3a4a class="left csdnav">
-            <label data-v-67ef3a4a>
-                <a data-v-67ef3a4a href="../pagehome/login.jsp" class="colorRed">登录</a>
-                <a data-v-67ef3a4a href="" class="colorRed">/</a>
-                <a data-v-67ef3a4a href="../pagehome/register.jsp" class="colorRed" style="margin-right: 10px;">注册</a>
-            </label>
+<body>
+<div id="app">
+    <div data-v-67ef3a4a class="csdheader">
+        <div data-v-67ef3a4a class="layout clear">
+            <div data-v-67ef3a4a class="left csdnav" id="daohang">
+                <label data-v-67ef3a4a v-if="weidenglu">
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/login" class="colorRed" >登录</a>
+                    <a data-v-67ef3a4a href="" class="colorRed">/</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/public/register" class="colorRed" style="margin-right: 10px;">注册</a>
+                </label>
+
+                <label data-v-67ef3a4a v-if="denglu">
+                    <a data-v-67ef3a4a href="#">你好，</a>
+                    <a data-v-67ef3a4a href="#" class="colorRed">${user.tel}/</a>
+                    <a data-v-67ef3a4a href="${pageContext.request.contextPath}/load/logout" class="colorRed" style="margin-right: 10px;">[退出]</a>
+                </label>
+
 
 
             <a data-v-67ef3a4a="" href="#mobileZuChe">手机租车</a>
@@ -210,21 +219,20 @@
         var getid = window.location.search;
         $.ajax({
         type:"get",
-        url:"/carsys/city/citys.do"+getid,
+        url:"${pageContext.request.contextPath}/sort/getname"+getid,
             dataType:"json",
             success:function(data){
                 if(data.code==1) {
-                 var infos = data.info;
-                 var get = infos.getCity;
-                 var back = infos.backCity;
-                 vm.getcitys = get.name;
-                 vm.backcitys = back.name;
+                 var get = data.getname;
+                 var back = data.backname;
+                 alert(get+"--"+back);
+                 vm.getcitys = get;
+                 vm.backcitys = back;
             }
         },
         error : function(){
             alert("ajax加载失败");
             }
-
             })
         })
 
@@ -235,18 +243,11 @@
         var getid = window.location.search;
         $.ajax({
             type:"get",
-            url:"/carsys/car/price.do"+getid,
+            url:"${pageContext.request.contextPath}/sort/getprice"+getid,
             dataType:"json",
             success:function(data){
-                if(data.code==1) {
-                    vm2.sites = data.info;
-
-                }
-            },
-            error : function(){
-                alert("ajax加载失败");
+                vm2.sites = data;
             }
-
         })
     })
 
@@ -257,18 +258,11 @@
         var getid = window.location.search;
         $.ajax({
             type:"get",
-            url:"/carsys/car/number.do"+getid,
+            url:"${pageContext.request.contextPath}/sort/getnumber"+getid,
             dataType:"json",
             success:function(data){
-                if(data.code==1) {
-                    vm3.cars = data.info;
-
-                }
-            },
-            error : function(){
-                alert("ajax加载失败");
+                    vm3.cars = data;
             }
-
         })
     })
 
@@ -299,6 +293,35 @@
     });
 </script>
 
+    //导航栏的信息
+    <script type="text/javascript">
+        var  vm4= new  Vue({
+            el:'#daohang',
+            data:{
+                denglu:'',
+                weidenglu:'',
+            },
+        });
+
+        $(function (){
+           $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/sort/judgesuccess",
+            dataType:"json",
+            success:function (result)   {
+                if(result.code==1){
+                    vm4.denglu=true;
+                    vm4.weidenglu=false;
+                    }
+                else{
+                    vm4.denglu=false;
+                    vm4.weidenglu=true;
+                }
+            }
+
+            });
+        })
+    </script>
 
 
 
