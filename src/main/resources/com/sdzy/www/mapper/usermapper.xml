@@ -8,7 +8,7 @@
     select * from sys_user where tel=#{tel};
     </select>
 
-    <insert id="insert" parameterType="User" >
+    <insert id="insert" parameterType="User"   useGeneratedKeys="true" keyProperty="id" >
         insert into sys_user values(null,#{tel},#{password},#{email},#{invitation});
     </insert>
 
