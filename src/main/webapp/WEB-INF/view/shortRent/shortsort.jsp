@@ -273,7 +273,7 @@
 
     function selectCar(cid) {
 
-        window.location.href="../order/ordersubmit.html?cid="+cid;
+        window.location.href="../order/ordersubmit.jsp?cid="+cid;
 
     }
 
