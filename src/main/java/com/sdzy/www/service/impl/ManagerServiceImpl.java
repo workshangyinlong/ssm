@@ -25,10 +25,20 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public User UpdateUser(String tel, String email, String password,int id) {
-        managerMapper.updateUser(tel,email,password,id);
+    public User UpdateUser(String tel, String email,int id) {
+        managerMapper.updateUser(tel,email,id);
 
         return managerMapper.selectUser(id);
+    }
+
+    @Override
+    public boolean updatePassword(String newPassword,int id) {
+        int result = managerMapper.updatePassword(newPassword,id);
+        if(result!=0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

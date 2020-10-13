@@ -27,10 +27,18 @@
 			<if test="email!=null">
 				email=#{email},
 			</if>
-			<if test="Password!=null">
-				password=#{password},
-			</if>
+<!--			<if test="Password!=null">-->
+<!--				password=#{password},-->
+<!--			</if>-->
 		</set>
 		where id=#{id}
+	</update>
+
+	<select id="selectUser" resultType="user">
+		select * from sys_user where id=#{id}
+	</select>
+
+	<update id="updatePassword">
+		update sys_user set password=#{password} where id=#{id}
 	</update>
 </mapper>

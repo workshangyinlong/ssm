@@ -12,5 +12,7 @@ public interface ManagerService {
 
     int delete(Integer oid);
 
-    public User UpdateUser(String tel, String email, String password, int id);
+    public User UpdateUser(String tel, String email, int id);
+
+    boolean updatePassword(String newPassword,int id);
 }
