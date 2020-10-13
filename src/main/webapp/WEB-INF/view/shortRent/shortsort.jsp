@@ -198,7 +198,7 @@
         },
        methods:{
          selectCar:function (id) {
-             window.location.href="${pageContext.request.contextPath}/order/ordersubmit?"+getid +"&cid=" +id;
+             window.location.href="${pageContext.request.contextPath}/order/ordersubmit"+getid +"&cid="+id;
          }
        },
 

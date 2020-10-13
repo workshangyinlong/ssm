@@ -71,7 +71,7 @@
         <property name="code" value="1"/>
         <property name="msg" value="成功"/>
     </bean>
-
+    <bean id="orders" class="com.sdzy.www.pojo.orders"></bean>
     <bean id="user" class="com.sdzy.www.pojo.User">
 
     </bean>

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en" >
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
-<body style="position: static">
+<body >
     <div id="app" class="bgGray">
         <div data-v-95ac8d30="" class="header3">
             <div data-v-95ac8d30="" class="layout clear">
@@ -64,12 +64,12 @@
                 <div class="selCarMsg">
                     <div class="selCarMsgCom">
                         <div class="MsgTit">取车</div>
-                        <div class="Msg">取车地址：{{getcitys.name}}</div>
+                        <div class="Msg">取车地址：{{getcitys}}</div>
                     </div>
 
                     <div class="selCarMsgCom">
                         <div class="MsgTit">还车</div>
-                        <div class="Msg">还车地址：{{backcitys.name}}</div>
+                        <div class="Msg">还车地址：{{backcitys}}</div>
                     </div>
                 </div>
             </div>
@@ -143,9 +143,10 @@
                 dataType:"json",
                 success:function(data){
                     if(data.code==1) {
-
-                        vm.getcitys = data.getname;
-                        vm.backcitys = data.backname;
+                        var get = data.getname;
+                        var back = data.backname;
+                        vm.getcitys = get;
+                        vm.backcitys = back;
                     }
                 },
                 error : function(){
@@ -163,12 +164,10 @@
             var getid = window.location.search;
             $.ajax({
                 type:"get",
-                url:"/order/ordersubmit"+getid,
+                url:"${pageContext.request.contextPath}/order/getcar"+getid,
                 dataType:"json",
                 success:function(data){
-                    if(data.code==1) {
-                        vm.infos = data.info;
-                    }
+                        vm.infos = data;
                 },
                 error : function(){
                     alert("ajax加载失败");
@@ -187,11 +186,11 @@
             var total = $("#total").html();
             $.ajax({
                 type:"get",
-                url:"/carsys/order/add.do"+id + "&oprice="+ total,
+                url:"${pageContext.request.contextPath}/order/setorder"+id + "&oprice="+ total,
                 dataType:"json",
                 success:function(data){
-                        alert(data.info);
-                        window.location.href="../mymain/mymain.html";
+                        alert(data.msg);
+                        window.location.href="${pageContext.request.contextPath}/manager/mymain";
                 },
                 error : function(){
                     alert("ajax加载失败");
