@@ -35,7 +35,7 @@
                     <a data-v-67ef3a4a="" href="../en/index.html">English</a>
                 </div>
                 <div data-v-67ef3a4a="" class="menu">
-                    <a data-v-67ef3a4a="" href="../mymain/mymain.html">我的车速递</a>
+                    <a data-v-67ef3a4a="" href="../mymain/mymain.jsp">我的车速递</a>
                 </div>
                 <div data-v-67ef3a4a="">
                     <i class="layui-icon layui-icon-cellphone" style="font-size:14px;  color:#c6000f;"></i>
