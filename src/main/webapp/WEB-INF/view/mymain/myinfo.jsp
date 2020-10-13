@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>订单管理-车速递</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/mymain.mymain.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/mymain.mymain.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 </head>
@@ -26,7 +27,7 @@
             <div data-v-95ac8d30="" class="header3User right">
                 <i data-v-95ac8d30="" class="iconfont icon-phone"></i>
                 <span data-v-95ac8d30="" class="sp1">400-919-8000</span>
-                <span data-v-95ac8d30="" class="sp2">欢迎您，</span>
+                <span data-v-95ac8d30="" class="sp2">欢迎您，{{user.tel}}</span>
                 <span data-v-95ac8d30="" class="sp3"></span>
             </div>
         </div>
@@ -47,10 +48,10 @@
                         </dl>
                         <ul data-v-1cae2c34="" class="manNav">
                             <li data-v-1cae2c34="">
-                                <a data-v-1cae2c34="" href="mymain.html" class="">订单管理</a>
+                                <a data-v-1cae2c34="" href="mymain.jsp" class="">订单管理</a>
                             </li>
                             <li data-v-1cae2c34="">
-                                <a data-v-1cae2c34="" href="myinfo.html" class="sel">个人信息</a>
+                                <a data-v-1cae2c34="" href="myinfo.jsp" class="sel">个人信息</a>
                             </li>
                         </ul>
                     </div>
@@ -144,7 +145,7 @@
                     ,shade: 0 //不显示遮罩
                     ,yes: function(){
                         $.ajax({
-                            url:"/carsys/user/update.do",
+                            url:"/manager/update",
                             type:"post",
                             data:$("form").serialize(),
                             dataType:'json',

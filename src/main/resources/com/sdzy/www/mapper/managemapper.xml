@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdzy.www.mapper.ManagerMapper">
+    <select id="selectAllOrder" resultType="com.sdzy.www.pojo.Order">
+        SELECT o.`id`,c.`name` carName,t1.`name` getcity,t2.`name` backcity,o.`oprice`,o.`status`
+	FROM sys_car c,
+	     sys_order o,
+	     sys_city t1,
+	     sys_city t2,
+	     sys_user u
+	     WHERE o.`cid`=c.`id`AND o.`getid`=t1.`id` AND o.`backid`=t2.`id`AND o.`uid`=u.`id`
+	     AND o.`uid`=#{uid} and o.code=0
+    </select>
+	<!--删除用户-->
+	<update id="update" >
+		UPDATE sys_order SET `code`=1 WHERE id=#{oid};
+	</update>
+	<!--修改用户信息-->
+	<update id="updateUser">
+		update sys_user
+		<set>
+			<if test="tel!=null">
+				tel=#{tel},
+			</if>
+			<if test="email!=null">
+				email=#{email},
+			</if>
+			<if test="Password!=null">
+				password=#{password},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+</mapper>

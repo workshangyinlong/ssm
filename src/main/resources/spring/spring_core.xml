@@ -76,5 +76,7 @@
 
     </bean>
 
+    <bean id="msg_order" class="com.sdzy.www.bean.Msg_Order"></bean>
+
 
 </beans>

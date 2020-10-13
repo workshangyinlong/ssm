@@ -8,6 +8,8 @@ public class Msg {
     private Integer code;//为0则为错误失败消息
     private String msg;//错误信息
 
+
+
     public Msg(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
