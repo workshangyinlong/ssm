@@ -251,7 +251,7 @@
     $(function () {
         $.ajax({
             type:"post",
-            url:"/carsys/user/denglu.do",
+            url:"${pageContext.request.contextPath}/sort/judgesuccess",
             dataType:"json",
             success:function(data){
                 //id为0时为父类

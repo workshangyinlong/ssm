@@ -24,9 +24,14 @@ public class SortController {
     public CityService cityService;
 //登录选车界面
     @RequestMapping("/shortsort")
-    public  String shortSort(){
+    public  String shortSort(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if(user!=null){
+            return "shortRent/shortsort";
+        }else {
+            return "redirect:/load/login";
+        }
 
-        return "shortRent/shortsort";
     }
 
 //导航栏判定是否登录成功
