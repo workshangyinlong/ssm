@@ -27,6 +27,7 @@
 					margin-left: 255px;
 				}
 				.dv_content{
+					margin-left: 150px;
 					width: 100%;
 					height: 500px;
 				}
@@ -36,7 +37,7 @@
 <body>
 
 <!--导航 -->
-<div style="width: 80%;margin-left: 10%;">
+<div style="width: 80%;margin-left: 10%;overflow: hidden;height: 80%;" >
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#left_tab,#top_right">
@@ -126,37 +127,31 @@
 	<!--右侧部分-->
 	<div class="page_main">
 		<script type="text/javascript">
-            $("#showUser").click(function(){
-                $(".dv_content").attr("src","userList");
-            })
-            //				$("#showGoodsType").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=show");
-            //				})
-            //				$("#addGoodsType").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=add");
-            //				})
-            //				$("#showGoods").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
-            //				})
-            //				$("#addGoods").click(function(){
-            //					$(".dv_content").attr("src","addGoods.jsp");
-            //				})
-            //				$("#showOrder").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getAllOrder");
-            //				})
+			$("#addCity").click(function(){
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/cityaddpage");
+			});
+			$("#showCityAll").click(function () {
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/citymanage")
+			})
+			//				$("#showGoodsType").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=show");
+			//				})
+			//				$("#addGoodsType").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=add");
+			//				})
+			//				$("#showGoods").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
+			//				})
+			//				$("#addGoods").click(function(){
+			//					$(".dv_content").attr("src","addGoods.jsp");
+			//				})
+			//				$("#showOrder").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getAllOrder");
+			//				})
 		</script>
-		<iframe class="dv_content" frameborder="0" scrolling="no">
+		<iframe class="dv_content" frameborder="0" style="overflow:auto;overflow-x: hidden" >
 		</iframe>
 	</div>
 </div>
 </body>
 </html>
-
-
-dataType:html
-data
-
-
-$.("#div").html(data);
-
-return
