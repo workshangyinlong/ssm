@@ -1,6 +1,6 @@
 package com.sdzy.www.pojo;
 
-public class orders {
+public class Orders {
     private Integer id;   //order id
     private  Integer  cid;//借的哪个车
     private  Integer uid;  //哪个用户借的
@@ -9,12 +9,12 @@ public class orders {
     private  double oprice; //订单价钱
     private  String status;  //订单状态
 
-    public orders() {
+    public Orders() {
     }
 
     @Override
     public String toString() {
-        return "orders{" +
+        return "Orders{" +
                 "id=" + id +
                 ", cid=" + cid +
                 ", uid=" + uid +

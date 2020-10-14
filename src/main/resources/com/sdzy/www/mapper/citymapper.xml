@@ -15,4 +15,26 @@
     <select id="getNumber" resultType="Car">
         select  * from  sys_car where cid=#{arg0} order by 'number' asc ;
     </select>
+
+
+    <!--获取所有城市按照指定格式-->
+    <select id="getCityAdmin" resultType="CityAdmin">
+        select c1.id,c1.name,c2.name as pname from sys_city as c1,sys_city as c2 where c1.pid =c2.id and c2.pid =0
+    </select>
+
+    <select id="getCityAdminByPid" resultType="CityAdmin">
+        select c1.id,c1.name,c2.name as pname from sys_city as c1,sys_city as c2 where c1.pid =c2.id and c2.id =#{pid}
+    </select>
+
+    <delete id="deleteCityById">
+        delete from sys_city where id=#{id}
+    </delete>
+
+    <insert id="addCityForP">
+        insert into sys_city values (null,#{cityname},#{pid})
+    </insert>
+
+    <select id="getCityForName" resultType="City">
+        select * from sys_city where name=#{cityname}
+    </select>
 </mapper>

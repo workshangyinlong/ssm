@@ -1,11 +1,11 @@
 package com.sdzy.www.service;
 
 import com.sdzy.www.pojo.Car;
-import com.sdzy.www.pojo.orders;
+import com.sdzy.www.pojo.Orders;
 
 public interface OrderService {
 
     Car getCar(String cid);
 
-    boolean setOrders(orders orders);
+    boolean setOrders(Orders orders);
 }
