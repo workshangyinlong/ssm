@@ -7,6 +7,7 @@ public class City implements Serializable {
     private String name;
     private String pid;
 
+
     public City() {
     }
 
