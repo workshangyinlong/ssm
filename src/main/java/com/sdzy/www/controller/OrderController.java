@@ -2,9 +2,8 @@ package com.sdzy.www.controller;
 
 import com.sdzy.www.bean.Msg;
 import com.sdzy.www.pojo.Car;
-import com.sdzy.www.pojo.Order;
+import com.sdzy.www.pojo.Orders;
 import com.sdzy.www.pojo.User;
-import com.sdzy.www.pojo.orders;
 import com.sdzy.www.service.CityService;
 import com.sdzy.www.service.OrderService;
 import com.sdzy.www.utils.ApBean;
@@ -14,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
-public class orderController {
+public class OrderController {
     @Autowired
     private CityService cityService;
     @Autowired
@@ -39,7 +36,7 @@ public class orderController {
     @RequestMapping("/setorder")
     @ResponseBody
     public Msg setOrder(String getid , String backid, String oprice, String cid, HttpSession session){
-        orders orders = ApBean.getBean(orders.class);
+        Orders orders = ApBean.getBean(Orders.class);
         orders.setBackid(Integer.valueOf(backid));
         orders.setGetid(Integer.valueOf(getid));
         orders.setOprice(Integer.valueOf(oprice));
