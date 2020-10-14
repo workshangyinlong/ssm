@@ -9,7 +9,6 @@ public class Msg {
     private String msg;//错误信息
 
 
-
     public Msg(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
