@@ -2,7 +2,7 @@ package com.sdzy.www.service.impl;
 
 import com.sdzy.www.mapper.OrderMapper;
 import com.sdzy.www.pojo.Car;
-import com.sdzy.www.pojo.orders;
+import com.sdzy.www.pojo.Orders;
 import com.sdzy.www.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean setOrders(orders orders) {
+    public boolean setOrders(Orders orders) {
         Integer i = orderMapper.setOrders(orders);
         if(i!=0){
             return true;
