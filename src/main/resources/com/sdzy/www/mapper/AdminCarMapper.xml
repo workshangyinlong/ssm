@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdzy.www.mapper.AdminCarMapper">
+    <resultMap id="car" type="Car">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="sitnum" column="sitnum"/>
+        <result property="price" column="price"/>
+        <result property="number" column="number"/>
+        <result property="picture" column="picture"/>
+       <association property="city" javaType="City">
+          <result property="id" column="cid"/>
+           <result property="name" column="yname"/>
+       </association>
+    </resultMap>
+
+
+    <select id="getCar" resultMap="car">
+        select r.id ,r.name, r.type, r.sitnum, r.cid, r.price, r.number, r.picture, y.id, y.name  yname, y.pid
+        from sys_car r,sys_city y where r.cid=y.id
+    </select>
+    <select id="getIdCar" resultMap="car">
+        select r.id ,r.name, r.type, r.sitnum, r.cid, r.price, r.number, r.picture, y.id, y.name  yname, y.pid
+        from sys_car r,sys_city y where r.cid=y.id  and r.id=#{arg0}
+    </select>
+<!--    <insert id="setCar" parameterType="Car">-->
+<!--        insert  into sys_car valus(#{id},#{name},#{type},#{sitnum},#{city.id},#{price},#{number},#{picture})-->
+<!--    </insert>-->
+    <update id="setCar" parameterType="Car">
+        update sys_car set name=#{name},type=#{type},sitnum=#{sitnum},cid=#{city.id},price=#{price},number=#{number},
+        picture=#{picture} where  id=#{id}
+    </update>
+    <delete id="delCar" parameterType="Car">
+        delete from sys_car where id=#{arg0}
+    </delete>
+    <select id="selectCar" resultMap="car">
+        select r.id ,r.name, r.type, r.sitnum, r.cid, r.price, r.number, r.picture, y.id, y.name yname, y.pid
+        from sys_car r,sys_city y where r.cid=y.id and r.name like  concat('%',#{carName},'%') and y.name like concat('%',#{serviceName},'%')
+    </select>
+</mapper>

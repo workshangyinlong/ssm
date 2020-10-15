@@ -27,7 +27,6 @@
 					margin-left: 255px;
 				}
 				.dv_content{
-					margin-left: 150px;
 					width: 100%;
 					height: 500px;
 				}
@@ -98,7 +97,7 @@
 					</a>
 					<ul id="sub3" class="nav panel-collapse collapse">
 						<li>
-							<a href="#" id="showGoodsType">
+							<a href="#" id="showcarsType">
 								<span class="glyphicon glyphicon-record"></span>&nbsp;&nbsp;查看所有车型
 							</a>
 						</li>
@@ -127,27 +126,24 @@
 	<!--右侧部分-->
 	<div class="page_main">
 		<script type="text/javascript">
-            $("#addCity").click(function(){
-                $(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/cityaddpage");
-            });
-            $("#showCityAll").click(function () {
+			$("#addCity").click(function(){
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/cityaddpage");
+			});
+			$("#showCityAll").click(function () {
 				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/citymanage")
 			})
-            //				$("#showGoodsType").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=show");
-            //				})
-            //				$("#addGoodsType").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsType?flag=add");
-            //				})
-            //				$("#showGoods").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
-            //				})
-            //				$("#addGoods").click(function(){
-            //					$(".dv_content").attr("src","addGoods.jsp");
-            //				})
-            //				$("#showOrder").click(function(){
-            //					$(".dv_content").attr("src","${pageContext.request.contextPath}/getAllOrder");
-            //				})
+			$("#showcarsType").click(function () {
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincar/opencheckcar")
+			})
+			//				$("#showGoods").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
+			//				})
+			//				$("#addGoods").click(function(){
+			//					$(".dv_content").attr("src","addGoods.jsp");
+			//				})
+			//				$("#showOrder").click(function(){
+			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getAllOrder");
+			//				})
 		</script>
 		<iframe class="dv_content" frameborder="0" style="overflow:auto;overflow-x: hidden" >
 		</iframe>
@@ -155,4 +151,3 @@
 </div>
 </body>
 </html>
-
