@@ -25,4 +25,8 @@ public interface CityMapper {
     int addCityForP(@Param("cityname") String cityname, @Param("pid") int pid);
 
     City getCityForName(String cityname);
+
+    City getCity(int cid);
+
+    int updateCity(@Param("cid") Integer cid,@Param("cname") String cname);
 }

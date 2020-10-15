@@ -37,4 +37,13 @@
     <select id="getCityForName" resultType="City">
         select * from sys_city where name=#{cityname}
     </select>
+
+
+    <select id="getCity" resultType="City">
+        select * from sys_city where id=#{id}
+    </select>
+
+    <update id="updateCity">
+        update sys_city set name=#{cname} where id=#{cid}
+    </update>
 </mapper>
