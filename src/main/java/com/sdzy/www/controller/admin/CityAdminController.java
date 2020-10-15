@@ -92,4 +92,26 @@ public class CityAdminController {
         }
     }
 
+    @RequestMapping("/getcity")
+    @ResponseBody
+    public City getCity(Integer cid){
+        City city=cityService.getCity(cid);
+        return city;
+    }
+
+
+    @RequestMapping("/updatecity")
+    @ResponseBody
+    public Msg updateCity(Integer cid,String cname){
+        Msg msg = ApBean.getBean(Msg.class);
+        boolean result=cityService.updateCity(cid,cname);
+        if(result){
+            return msg;
+        }else{
+            msg.setCode(0);
+            msg.setMsg("修改失败，未知错误");
+            return msg;
+        }
+    }
+
 }

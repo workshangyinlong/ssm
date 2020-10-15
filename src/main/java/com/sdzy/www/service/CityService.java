@@ -22,4 +22,8 @@ public interface CityService {
     boolean deleteCityById(String id);
 
     boolean addCityForP(String cityname, Integer citypid);
+
+    City getCity(int cid);
+
+    boolean updateCity(Integer cid, String cname);
 }
