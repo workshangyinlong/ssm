@@ -42,4 +42,9 @@ public class UserAdminServiceImpl implements UserAdminService {
         User user =userAdminMapper.selectById(uid);
         return user;
     }
+
+    @Override
+    public int deleteById(int uid) {
+        return userAdminMapper.deleteById(uid);
+    }
 }

@@ -17,4 +17,6 @@ public interface UserAdminMapper {
     User selectById(int uid);
 
     void update(@Param("id") int uid, @Param("email") String email, @Param("tel") String tel,@Param("invitation") String invitation);
+
+    int deleteById(int uid);
 }
