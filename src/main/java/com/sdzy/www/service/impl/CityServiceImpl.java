@@ -72,4 +72,20 @@ public class CityServiceImpl implements CityService {
         }
 
     }
+
+    @Override
+    public City getCity(int cid) {
+
+        return cityMapper.getCity(cid);
+    }
+
+    @Override
+    public boolean updateCity(Integer cid, String cname) {
+        int result=cityMapper.updateCity(cid,cname);
+        if(result!=0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

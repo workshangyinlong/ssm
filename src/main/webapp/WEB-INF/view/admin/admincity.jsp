@@ -117,7 +117,7 @@
                 </td>
                 <td>
                     <div class="itemBtn left">
-                        <button class="butt" @click="updateCity(city.id)" >修改</button>
+                        <button class="butt" @click="update(city.id)" >修改</button>
                     </div>
                 </td>
             </tr>
@@ -128,6 +128,33 @@
 
 
 
+
+    <div class="modal fade" id="modalModify">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h4 class="modal-title">信息修改：</h4>
+                </div>
+                <div class ="modal-body" >
+                    <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input class="input-sm" type="text" id="cid" placeholder="" v-model="city.id" onfocus=this.blur() />
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon">id:</span>
+                        <input class="input-sm" type="text" id="cname" placeholder="1" v-model="city.name"/>
+                    </div>
+
+                </div>
+                <div class = "modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss ="modal">取消</button>
+                    <button type="button" class="btn btn-primary" @click="updateM()" id="modify">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -207,7 +234,15 @@
                 })
             },
             update:function (id) {
-
+                $.ajax({
+                    type:'GET',
+                    url:'${pageContext.request.contextPath}/admincity/getcity?cid='+id,
+                    dataType:'json',
+                    success:function (data) {
+                        vuemodal.city=data;
+                        $("#modalModify").modal("show");
+                    }
+                })
             }
         }
     })
@@ -227,26 +262,32 @@
     })
 </script>
 
-<%--<script>
-    function deleteCity(id
-          $.ajax({
-            Type:"GET",
-            url:"${pageContext.request.contextPath}/admincity/deletecity",
-            data:{"id":id},
-            dataType:"json",) {
-            success:function(data){
-                if(data.code==1){
-                    alert("删除成功")
-                    find();
-                }else{
-                    alert(data.msg)
-                }
-            },
-            error:function(){
-                alert("未知错误！");
+
+<script>
+    var vuemodal=new Vue({
+        el:"#modalModify",
+        data:{
+            city:''
+        },methods:{
+            updateM:function(){
+                $.ajax({
+                    type:"GET",
+                    url:"${pageContext.request.contextPath}/admincity/updatecity",
+                    data:{"cid":$("#cid").val(),"cname":$("#cname").val()},
+                    dataType:"json",
+                    success:function(data){
+                        if(data.code==1){
+                            alert("修改成功！")
+                            $("#modalModify").modal("hide");
+                            find();
+                        }else{
+                            alert(data.msg)
+                        }
+                    }
+                })
             }
-        })
-    }
-</script>--%>
+        }
+    })
+</script>
 </body>
 </html>
