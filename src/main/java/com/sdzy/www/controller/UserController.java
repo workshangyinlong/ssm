@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+import java.util.UUID;
 
 /*
 用户登录注册跳转以及结果处理处理器
@@ -61,7 +62,10 @@ public class UserController {
             user.setTel(tel);
             user.setPassword(password);
             user.setEmail(email);
-            user.setInvitation(invitation);
+            String s = UUID.randomUUID().toString();
+            String[] split = s.split("-");
+
+            user.setInvitation(split[0]);
             userService.regist(user);
             user.setPassword("");
             session.setAttribute("user",user);

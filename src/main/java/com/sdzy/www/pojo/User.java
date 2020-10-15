@@ -5,7 +5,10 @@ package com.sdzy.www.pojo;
  */
 /*
 * user*/
-public class User {
+
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Integer id;
     private String tel;
     private String password;
