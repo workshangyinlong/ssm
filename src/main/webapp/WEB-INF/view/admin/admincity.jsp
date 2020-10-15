@@ -138,12 +138,12 @@
                 </div>
                 <div class ="modal-body" >
                     <div class="input-group">
-                        <span class="input-group-addon"></span>
+                        <span class="input-group-addon">id</span>
                         <input class="input-sm" type="text" id="cid" placeholder="" v-model="city.id" onfocus=this.blur() />
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon">id:</span>
+                        <span class="input-group-addon">服务点名称:</span>
                         <input class="input-sm" type="text" id="cname" placeholder="1" v-model="city.name"/>
                     </div>
 
