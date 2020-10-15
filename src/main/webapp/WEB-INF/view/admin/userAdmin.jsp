@@ -15,10 +15,10 @@
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.3.1.js"></script>
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="${pageContext.request.contextPath}/static/js/vue.min.js"></script>
 </head>
 <body>
-<div class="layui-card" style="margin-right: 600px">
+<div class="layui-card" style="margin-right: 600px" id="userlis">
     <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
         <div class="layui-form-item">
 
@@ -45,7 +45,7 @@
 
 
     <div style="margin-right: 600px">
-        <table class="table table-hover" id="userlis" style="width: 600px" >
+        <table class="table table-hover"  style="width: 600px" >
             <thead>
             <tr>
                 <th>
@@ -94,7 +94,7 @@
                 </th>
             </tr>
             </thead>
-            <tbody  v-for="user in obj" id="demo">
+            <tbody  v-for="user in obj" >
             <tr>
                 <td>
                     <div class="itemUserMsg left" >
@@ -146,14 +146,81 @@
                         <button class="butt" @click="deleteUser(user.id)" >删除</button>
                     </div>
                     <div class="itemBtn left">
-                        <button class="butt" @click="updateUser(user.id)" >修改</button>
+                        <botton class="butt" @click="openmodal(user.id)" >修改</botton>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
+        <%--修改模态框--%>
+        <div class="modal fade" id="modalModify">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h4 class="modal-title">用户信息修改：</h4>
+                    </div>
+                    <div class ="modal-body" >
+                        <div class="input-group">
+                            <span class="input-group-addon">id:</span>
+                            <input class="input-sm" type="text" id="id" placeholder="1" v-model="relid"/>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon">TEL:</span>
+                            <input class="input-sm" type="text" id="tel" placeholder="1" v-model="reltel"/>
+                        </div>
+                        <br/>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">EMAIL:</span>
+                            <input class="input-sm" type="text" id="email" placeholder="1" v-model="relemail"/>
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon">invitation:</span>
+                            <input class="input-sm" type="text" id="invitation" placeholder="1" v-model="relinvitation"/>
+                        </div>
+
+                    </div>
+                    <div class = "modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss ="modal">取消</button>
+                        <button type="button" class="btn btn-default" onclick="edit()" id="modify">修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+
+
+    <%--打开模态修改--%>
+
+
+
+    <script>
+        function edit(){
+            if(confirm("确认要修改吗?")){
+                $.ajax({
+                    type:"get",
+                    url:"${pageContext.request.contextPath}/user/update",
+                    data:{"tel":vm.reltel,"email":vm.relemail,"id":vm.relid,"invitation":vm.relinvitation},
+                    dataType:"json",
+                    success:function(data){
+
+                        if(data.code==1){
+                            alert("tan!!!")
+                            $("#modalModify").modal("hide");
+                            alert(data.msg);
+                            alert("tan!!!")
+                        }else{
+                            alert(data.msg);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 
 
 
@@ -163,8 +230,57 @@
         el:'#userlis',
         data:{
             obj:[],
+            id:'',
+            tel:'',
+            email:'',
+            invitation:'',
+            relid:'',
+            reltel:'',
+            relemail:'',
+            relinvitation:''
         },
-    });
+        methods:{
+            openmodal:function(event) {
+                var that=this;
+
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/user/selectById",
+                        dataType:"json",
+                        data:{id:event},
+                        success:function (data) {
+                        alert(data.tel)
+
+                            that.reltel=data.tel;
+                        alert(that.reltel)
+                            that.relemail=data.email;
+                            that.relid=data.id;
+                            that.relinvitation=data.invitation
+                        }
+                    });
+                    $("#modalModify").modal("show");
+            },
+            deleteUser:function(idx){
+                var that = this;
+                alert(idx)
+                //ajax,每次点击删除,往后台传 idx idx是id
+                $.ajax({
+                    type:"get",
+                    url:"${pageContext.request.contextPath}/user/delete",
+                    data:{id:idx},
+                    datatype:"json",
+                    success:function (data){
+                        if(data.code==1){
+                           alert(data.msg)
+                            loadData()
+                        }else{
+                            alert(data.msg)
+                        }
+                }
+                })
+            }
+
+        }
+        });
 
    $(function () {
         loadData();
@@ -230,6 +346,8 @@
             })
         })
     })
+
+
 </script>
 </body>
 </html>

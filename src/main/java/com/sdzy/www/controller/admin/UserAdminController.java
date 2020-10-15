@@ -67,7 +67,37 @@ public class UserAdminController {
         int uid=Integer.valueOf(id);
         User user=userAdminService.update(uid,email,tel,invitation);
         Msg msg=ApBean.getBean(Msg.class);
+        if(user!=null){
+            msg.setCode(1);
+            msg.setMsg("修改成功");
+        }else{
+            msg.setMsg("修改失败");
+        }
+        return msg;
+    }
+    //通过用户id查询
+    @RequestMapping("/selectById")
+    @ResponseBody
+    public User selectById(String id){
+        int uid=Integer.valueOf(id);
+        User user=userAdminService.selectById(uid);
+        return user;
+    }
 
+    //删除用户
+@RequestMapping("delete")
+@ResponseBody
+    public Msg delete(String id){
+        Msg msg=ApBean.getBean(Msg.class);
+        int uid=Integer.valueOf(id);
+    System.out.println(uid);
+        int count=userAdminService.deleteById(uid);
+        if(count!=0){
+            msg.setCode(1);
+            msg.setMsg("删除成功");
+        }else{
+            msg.setMsg("删除失败");
+        }
         return msg;
     }
 }

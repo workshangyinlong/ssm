@@ -15,4 +15,6 @@ public interface UserAdminService {
     User selectById(int uid);
 
     User update(int uid, String email, String tel, String invitation);
+
+    int deleteById(int uid);
 }
