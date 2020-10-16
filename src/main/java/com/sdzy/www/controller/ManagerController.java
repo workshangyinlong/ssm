@@ -126,7 +126,11 @@ public class ManagerController {
 
 
     @RequestMapping("/mymain")
-    public String mymain() {
+    public String mymain(HttpSession session) {
+        Object user = session.getAttribute("user");
+        if(user==null){
+            return "redirect:/load/login";
+        }
         return "mymain/mymain";
     }
 
