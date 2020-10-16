@@ -16,10 +16,16 @@
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/vue.min.js"></script>
+    <style>
+        #app, body, html {
+            width: 100%;
+            min-width: auto;
+        }
+    </style>
 </head>
 <body>
-<div class="layui-card" style="margin-right: 600px" id="userlis">
-    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist">
+
+    <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-userfront-formlist" style="margin-left: 95px">
         <div class="layui-form-item">
 
             <div class="layui-inline">
@@ -43,9 +49,13 @@
         </div>
     </div>
 
+    <div style="height: 50px"></div>
 
-    <div style="margin-right: 600px">
-        <table class="table table-hover"  style="width: 600px" >
+
+
+    <div class="layui-card" style="margin-left: 95px" id="userlis">
+    <div>
+        <table class="table table-hover" >
             <thead>
             <tr>
                 <th>
@@ -179,7 +189,7 @@
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon">invitation:</span>
-                            <input class="input-sm" type="text" id="invitation" placeholder="1" v-model="relinvitation"/>
+                            <input class="input-sm" type="text" id="invitation"  v-model="relinvitation"/>
                         </div>
 
                     </div>
@@ -248,10 +258,8 @@
                         dataType:"json",
                         data:{id:event},
                         success:function (data) {
-                        alert(data.tel)
 
                             that.reltel=data.tel;
-                        alert(that.reltel)
                             that.relemail=data.email;
                             that.relid=data.id;
                             that.relinvitation=data.invitation
@@ -308,9 +316,6 @@
             //tel 输入框的文字
             var tText = $("input[name='tel']").val();
 
-            alert(eText);
-            alert(tText);
-
             $.ajax({
                 type:"get",
                 url:"${pageContext.request.contextPath}/user/getUserList",
@@ -327,8 +332,6 @@
     $(function () {
         $(".reclick").click(function () {
             var id=$(this).attr("val")
-
-            alert(id);
 
             $.ajax({
                 type:"get",

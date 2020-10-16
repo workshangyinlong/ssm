@@ -1,6 +1,14 @@
 package com.sdzy.www.pojo;
 
 public class Order {
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     public String getCarName() {
         return carName;
     }
@@ -18,6 +26,7 @@ public class Order {
     private String oprice;
     private String status;
     private Integer code;
+    private String tel;
     public Integer getId() {
         return id;
     }

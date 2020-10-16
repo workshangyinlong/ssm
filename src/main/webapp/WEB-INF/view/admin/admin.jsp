@@ -126,6 +126,9 @@
 	<!--右侧部分-->
 	<div class="page_main">
 		<script type="text/javascript">
+			$("#showUser").click(function(){
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/user/userAdmin");
+			});
 			$("#addCity").click(function(){
 				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincity/cityaddpage");
 			});
@@ -135,6 +138,9 @@
 			$("#showcarsType").click(function () {
 				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincar/opencheckcar")
 			})
+			$("#showOrder").click(function(){
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/orderAdmin/orderAdmin");
+			});
 			//				$("#showGoods").click(function(){
 			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
 			//				})

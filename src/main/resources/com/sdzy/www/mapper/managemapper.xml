@@ -10,7 +10,7 @@
 	     sys_city t1,
 	     sys_city t2,
 	     sys_user u
-	     WHERE o.`cid`=c.`id`AND o.`getid`=t1.`id` AND o.`backid`=t2.`id`AND o.`uid`=u.`id`
+	     WHERE o.`cid`=c.`id`AND o.`getid`=t1.`id` AND o.`backid`=t2.`id` AND o.`uid`=u.`id`
 	     AND o.`uid`=#{uid} and o.code=0
     </select>
 	<!--删除用户-->
