@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdzy.www.mapper.OrderAdminMapper">
+    <select id="selectOrder" resultType="order">
+        SELECT o.`id`,u.tel,c.`name` carName,t1.`name` getcity,t2.`name` backcity,o.`oprice`,o.`status`
+	     FROM sys_car c,
+	     sys_order o,
+	     sys_city t1,
+	     sys_city t2,
+	     sys_user u
+	    <where>
+            <if test="tel!=null">
+               and u.tel like concat('%',#{tel},'%')
+            </if>
+            <if test="carName!=null">
+               and c.name like concat('%',#{carName},'%')
+            </if>
+            <if test="backid!=null">
+               and o.backid=#{backid}
+            </if>
+            <if test="getid!=null">
+                and o.getid=#{getid}
+            </if>
+            <if test="status!=null">
+                and o.status=#{status}
+            </if>
+            and o.`cid`=c.`id` AND o.`getid`=t1.`id` AND o.`backid`=t2.`id` AND o.`uid`=u.`id`
+            AND  o.code=0
+        </where>
+
+    </select>
+
+    <select id="selectAll" resultType="order">
+         SELECT o.`id`,c.`name` carName,t1.`name` getcity,t2.`name` backcity,o.`oprice`,o.`status`
+	     FROM sys_car c,
+	     sys_order o,
+	     sys_city t1,
+	     sys_city t2,
+	     sys_user u
+	     WHERE o.`cid`=c.`id`AND o.`getid`=t1.`id` AND o.`backid`=t2.`id`AND o.`uid`=u.`id`
+	     AND  o.code=0
+    </select>
+
+    <update id="updateById" parameterType="int">
+        update sys_order set code=1 where id=#{oid}
+    </update>
+</mapper>
