@@ -316,6 +316,28 @@
                 })
     }
 
+    $(function () {
+        loadData();
+    })
+    function loadData() {
+        $.ajax({
+            type:"get",
+            url:"${pageContext.request.contextPath}/orderAdmin/getAll?",
+            dataType:"json",
+            async: false,
+            success:function(data){
+
+                if(data.code==1){
+                    vm.obj=data.orders;
+                } else{
+                    alert("没有订单信息");
+                }
+            },
+            error:function () {
+                alert("ajax加载错误");
+            }
+        })
+    }
 </script>
 <script>
     var vm1 = new Vue({
