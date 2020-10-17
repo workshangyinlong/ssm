@@ -78,5 +78,15 @@
 
     <bean id="msg_order" class="com.sdzy.www.bean.Msg_Order"></bean>
 
+    <bean id="city" class="com.sdzy.www.pojo.City"></bean>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--定义最大上传文件大小-->
+        <property name="maxUploadSize" value="10000000"/>
+    </bean>
+
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+     </bean>
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager" proxy-target-class="true"/>
 </beans>

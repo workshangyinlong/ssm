@@ -15,4 +15,6 @@ public interface AdminCarService {
     boolean delCar(int id);
 
     List<Car> selectCar(String carName, String serviceName);
+
+    boolean addCar(Car car);
 }

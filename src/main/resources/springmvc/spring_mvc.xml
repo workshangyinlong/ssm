@@ -43,4 +43,9 @@
         <property name="suffix" value=".jsp"/><!--后方拼接-->
         <property name="prefix" value="/WEB-INF/view/"/><!--前方拼接-->
     </bean>
+
+
+
+
+
 </beans>

@@ -40,4 +40,8 @@
         select r.id ,r.name, r.type, r.sitnum, r.cid, r.price, r.number, r.picture, y.id, y.name yname, y.pid
         from sys_car r,sys_city y where r.cid=y.id and r.name like  concat('%',#{carName},'%') and y.name like concat('%',#{serviceName},'%')
     </select>
+
+    <insert id="addCar" parameterType="Car">
+        insert into sys_car (name,type,sitnum,cid,price,number,picture) values (#{name},#{type},#{sitnum},#{city.id},#{price},#{number},#{picture})
+    </insert>
 </mapper>

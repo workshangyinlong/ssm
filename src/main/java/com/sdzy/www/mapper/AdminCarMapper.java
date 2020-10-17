@@ -16,4 +16,5 @@ public interface AdminCarMapper {
 
     List<Car> selectCar(@Param("carName") String carName,@Param("serviceName") String serviceName);
 
+    int addCar(Car car);
 }

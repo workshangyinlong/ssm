@@ -5,6 +5,7 @@ import com.sdzy.www.pojo.Car;
 import com.sdzy.www.service.AdminCarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -48,5 +49,16 @@ public class AdminCarServiceImpl implements AdminCarService {
     public List<Car> selectCar(String carName, String serviceName) {
 
         return  adminCarMapper.selectCar(carName,serviceName);
+    }
+
+    @Override
+    @Transactional(rollbackFor=Exception.class)
+    public boolean addCar(Car car) {
+        int result =adminCarMapper.addCar(car);
+        if(result!=0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

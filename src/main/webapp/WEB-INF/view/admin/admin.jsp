@@ -102,7 +102,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#" id="addGoodsType">
+							<a href="#" id="addcarsType">
 								<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加车辆
 							</a>
 						</li>
@@ -140,6 +140,9 @@
 			})
 			$("#showOrder").click(function(){
 				$(".dv_content").attr("src","${pageContext.request.contextPath}/orderAdmin/orderAdmin");
+			});
+			$("#addcarsType").click(function(){
+				$(".dv_content").attr("src","${pageContext.request.contextPath}/admincar/addcarpage");
 			});
 			//				$("#showGoods").click(function(){
 			//					$(".dv_content").attr("src","${pageContext.request.contextPath}/getGoodsList");
